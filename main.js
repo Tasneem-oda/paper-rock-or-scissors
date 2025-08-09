@@ -1,47 +1,55 @@
-let computerChoise = document.querySelector('.computer');
-let yourChoise = document.querySelector('.you');
-let resultTag = document.querySelector('.result');
-let buttons = document.querySelectorAll('button');
-let random;
-buttons.forEach( button=> button.addEventListener('click', function(e){
-    // e.preventDefault()
-    yourChoise.innerHTML = button.innerText;
-    randomChoise();
-    result()
-})
-)
-function randomChoise(){
-    random = Math.floor(Math.random() * 3)+ 1 ;
+let computerChoiseDisplay = document.querySelector(".computer");
+let yourChoiseDisplay = document.querySelector(".you");
+let resultDisplay = document.querySelector(".result");
+let buttons = document.querySelectorAll("button");
+let yourScore = 0;
+let computerScore = 0;
 
-    if(random =='1'){
-    computerChoise.innerHTML='rock'
-}
-if(random =='2'){
-    computerChoise.innerHTML = 'paper'
-}
- if (random == '3'){
-    computerChoise.innerHTML = 'scissors'
-}
-}
-function result(){
-    if ( computerChoise.innerHTML==='rock' && yourChoise.innerHTML ==='paper'){
-        resultTag.innerHTML ='you win!'
-    }
-    if ( computerChoise.innerHTML==='rock' && yourChoise.innerHTML ==='scissors'){
-        resultTag.innerHTML ='you lose!'
-    }
-    if ( computerChoise.innerHTML==='paper' && yourChoise.innerHTML ==='rock'){
-        resultTag.innerHTML ='you lose!'
-    }
-    if ( computerChoise.innerHTML=='paper' && yourChoise.innerHTML ==='scissors'){
-        resultTag.innerHTML ='you win!'
-    }
-    if ( computerChoise.innerHTML=='scissors' && yourChoise.innerHTML ==='paper'){
-        resultTag.innerHTML ='you lose!'
-    }if ( computerChoise.innerHTML=='scissors' && yourChoise.innerHTML ==='rock'){
-        resultTag.innerHTML ='you win!'
-    }if ( computerChoise.innerHTML==yourChoise.innerHTML ){
-        resultTag.innerHTML ='it is a drow'
-    }
+// تحديث النقاط في الواجهة
+function updateScores() {
+  // يمكنك إضافة عناصر HTML لعرض النقاط وتحديثها هنا
+  // مثال:
+  // document.querySelector('.your-score').innerHTML = yourScore;
+  // document.querySelector('.computer-score').innerHTML = computerScore;
 }
 
+buttons.forEach((button) =>
+  button.addEventListener("click", (e) => {
+    const yourChoise = e.target.innerText;
+    yourChoiseDisplay.innerHTML = yourChoise;
+
+    const computerChoise = generateComputerChoice();
+    computerChoiseDisplay.innerHTML = computerChoise;
+
+    const result = getResult(yourChoise, computerChoise);
+    resultDisplay.innerHTML = result;
+
+    updateScores();
+  })
+);
+
+function generateComputerChoice() {
+  const choices = ["ورقة", "حجرة", "مقص"];
+  const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+  return randomChoice;
+}
+
+function getResult(yourChoise, computerChoise) {
+  if (yourChoise === computerChoise) {
+    return "تعادل!";
+  }
+
+  // شروط الفوز
+  if (
+    (yourChoise === "حجرة" && computerChoise === "مقص") ||
+    (yourChoise === "ورقة" && computerChoise === "حجرة") ||
+    (yourChoise === "مقص" && computerChoise === "ورقة")
+  ) {
+    yourScore++;
+    return "فزت!";
+  }
+
+  // شروط الخسارة
+  computerScore++;
+  return "خسرت!";
+}

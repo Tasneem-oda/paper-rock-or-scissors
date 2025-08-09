@@ -1,0 +1,73 @@
+/* تنسيق الجسم والخلفية */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* تنسيق الحاوية الرئيسية */
+.container {
+  background-color: #fff;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* تنسيق العناوين والفقرات */
+h1 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+.result-section {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* تنسيق الأزرار */
+.buttons-container {
+  margin-top: 30px;
+}
+
+button {
+  font-size: 1em;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  color: #fff;
+}
+
+.paper {
+  background-color: #17a2b8;
+}
+
+.rock {
+  background-color: #dc3545;
+}
+
+.scissors {
+  background-color: #28a745;
+}
+
+button:hover {
+  transform: translateY(-3px);
+}
+
+.result {
+  font-size: 1.5em;
+  margin-top: 10px;
+}
